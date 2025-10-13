@@ -1,0 +1,37 @@
+version: '3.8'
+
+services:
+  app:
+    build: ./src/backend
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env
+    environment:
+      DJANGO_DEBUG_MODE: "debug"
+    command: "python manage.py runserver 0.0.0.0:8000"
+    depends_on:
+     postgres:
+        condition: service_healthy
+
+  postgres:
+    image: postgres:15-alpine 
+    restart: always
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_NAME}    
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_NAME}"]
+      interval: 10s
+      retries: 5
+      start_period: 30s
+      timeout: 10s
+
+volumes:
+  postgres_data:

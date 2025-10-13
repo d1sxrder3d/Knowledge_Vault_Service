@@ -1,0 +1,155 @@
+
+:root {
+    --bg: #0e0e10;
+    --bg-card: #18181b;
+    --text: #e4e4e7;
+    --accent: #3b82f6;
+    --accent-hover: #2563eb;
+    --border: #27272a;
+    --danger: #ef4444;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: "Inter", system-ui, sans-serif;
+    margin: 0;
+    padding: 0 20px;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 0;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 30px;
+}
+
+nav .logo {
+    font-weight: 600;
+    font-size: 1.2rem;
+    color: var(--accent);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+nav .logo:hover {
+    color: var(--accent-hover);
+}
+
+nav .btn {
+    color: var(--text);
+    text-decoration: none;
+    padding: 8px 14px;
+    border-radius: 8px;
+    background-color: var(--bg-card);
+    border: 1px solid var(--border);
+    transition: all 0.2s ease;
+    margin-left: 10px;
+}
+
+nav .btn:hover {
+    background-color: var(--border);
+}
+
+nav .btn.primary {
+    background-color: var(--accent);
+    color: white;
+}
+
+nav .btn.primary:hover {
+    background-color: var(--accent-hover);
+}
+
+nav .btn.logout {
+    background-color: var(--danger);
+    border-color: var(--danger);
+    color: white;
+}
+
+.username {
+    margin-right: 10px;
+    opacity: 0.9;
+}
+
+
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+    padding-bottom: 40px;
+}
+
+h2 {
+    color: var(--accent);
+    margin-bottom: 15px;
+}
+
+/* --- Формы --- */
+form {
+    background: var(--bg-card);
+    padding: 25px;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    max-width: 400px;
+    margin-top: 10px;
+}
+
+form input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    background: #1f1f23;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    color: var(--text);
+}
+
+form input:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 4px var(--accent);
+}
+
+button {
+    background-color: var(--accent);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 10px 14px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background 0.2s ease;
+}
+
+button:hover {
+    background-color: var(--accent-hover);
+}
+
+
+.errorlist {
+    color: var(--danger);
+    list-style: none;
+    padding: 0;
+}
+
+
+footer {
+    border-top: 1px solid var(--border);
+    text-align: center;
+    font-size: 0.85rem;
+    padding: 15px 0;
+    opacity: 0.7;
+}

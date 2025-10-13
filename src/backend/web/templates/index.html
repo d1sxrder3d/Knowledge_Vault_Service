@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block title %}Главная{% endblock %}
+{% block content %}
+    <h1>Добро пожаловать в Knowledge Vault!</h1>
+
+    {% if user.is_authenticated %}
+        {% if just_logged_in %}
+            <p class="welcome-message">🎉 Вы успешно вошли в систему! Добро пожаловать обратно, {{ user.username }}.</p>
+        {% endif %}
+
+        <div class="dashboard">
+            <div class="dashboard-block">
+                <h2>Мои задачи (TODO)</h2>
+                <ul class="item-list">
+                    {% for task in tasks %}
+                        <li>
+                            <span class="item-name">{{ task.name }}</span>
+                            <span class="item-meta">до {{ task.end_time|date:"d.m.Y H:i" }}</span>
+                        </li>
+                    {% empty %}
+                        <li>У вас пока нет задач.</li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+            <div class="dashboard-block">
+                <h2>Мои документы</h2>
+                <ul class="item-list">
+                    {% for doc in documents %}
+                         <li>
+                            <span class="item-name">{{ doc.name }}</span>
+                            <span class="item-meta">.{{ doc.extension }}</span>
+                        </li>
+                    {% empty %}
+                        <li>У вас пока нет документов.</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+
+    {% else %}
+        <p>Пожалуйста, <a href="{% url 'login' %}">войдите</a> или <a href="{% url 'register' %}">зарегистрируйтесь</a>, чтобы начать.</p>
+    {% endif %}
+{% endblock %}

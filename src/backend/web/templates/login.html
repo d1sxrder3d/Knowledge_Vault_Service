@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Вход</h2>
+
+<form method="post">
+  {% csrf_token %}
+  <div>
+    <label for="id_login">Имя пользователя или email:</label><br>
+    {{ form.login }}
+  </div>
+  <div>
+    <label for="id_password">Пароль:</label><br>
+    {{ form.password }}
+  </div>
+  <button type="submit">Войти</button>
+</form>
+
+{% if form.non_field_errors %}
+  <div style="color: red;">
+    {% for error in form.non_field_errors %}
+      <p>{{ error }}</p>
+    {% endfor %}
+  </div>
+{% endif %}
+{% endblock %}
