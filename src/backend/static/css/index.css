@@ -1,0 +1,176 @@
+/* Стили для главной страницы */
+
+.welcome-header {
+    margin-bottom: 32px;
+    text-align: center;
+}
+
+.welcome-message {
+    background: #2a2a2a;
+    border: 1px solid #6b9eff;
+    border-left: 4px solid #6b9eff;
+    padding: 16px 20px;
+    border-radius: 8px;
+    color: #e5e5e5;
+    margin-bottom: 24px;
+}
+
+/* Сетка для карточек */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(550px, 1fr));
+    gap: 24px;
+    margin-bottom: 30px;
+}
+
+/* Карточки */
+.card {
+    background: #2a2a2a;
+    border: 1px solid #3a3a3a;
+    border-radius: 12px;
+    padding: 24px;
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid #3a3a3a;
+}
+
+.card-header h2 {
+    color: #e5e5e5;
+    font-size: 1.5em;
+    font-weight: 600;
+    margin: 0;
+}
+
+/* Списки задач и документов */
+.task-list, .doc-list {
+    list-style: none;
+    max-height: 600px;
+    overflow-y: auto;
+}
+
+/* Кастомный скроллбар */
+.task-list::-webkit-scrollbar, 
+.doc-list::-webkit-scrollbar {
+    width: 8px;
+}
+
+.task-list::-webkit-scrollbar-track, 
+.doc-list::-webkit-scrollbar-track {
+    background: #1a1a1a;
+    border-radius: 4px;
+}
+
+.task-list::-webkit-scrollbar-thumb, 
+.doc-list::-webkit-scrollbar-thumb {
+    background: #4a4a4a;
+    border-radius: 4px;
+}
+
+/* Элементы задач и документов */
+.task-item, .doc-item {
+    background: #1f1f1f;
+    margin-bottom: 12px;
+    padding: 16px;
+    border-radius: 8px;
+    border: 1px solid #3a3a3a;
+}
+
+/* Стили задачи */
+.task-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+}
+
+.task-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.task-name {
+    font-size: 1em;
+    color: #e5e5e5;
+    margin-bottom: 4px;
+    word-wrap: break-word;
+}
+
+.task-meta {
+    font-size: 0.85em;
+    color: #a0a0a0;
+}
+
+.task-tags {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    margin-top: 8px;
+}
+
+.tag {
+    background: #6b9eff;
+    color: white;
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 0.75em;
+    font-weight: 500;
+}
+
+/* Стили документа */
+.doc-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.doc-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.doc-name {
+    font-weight: 500;
+    color: #e5e5e5;
+    margin-bottom: 4px;
+    word-wrap: break-word;
+}
+
+.doc-meta {
+    color: #a0a0a0;
+    font-size: 0.85em;
+}
+
+/* Пустое состояние */
+.empty-state {
+    text-align: center;
+    padding: 40px;
+    color: #6a6a6a;
+}
+
+/* Сообщение для гостей */
+.guest-message {
+    background: #2a2a2a;
+    border: 1px solid #3a3a3a;
+    border-radius: 12px;
+    padding: 40px;
+    text-align: center;
+    max-width: 600px;
+    margin: 60px auto;
+}
+
+.guest-message p {
+    font-size: 1.1em;
+    margin-bottom: 24px;
+}
+
+.guest-actions {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+}

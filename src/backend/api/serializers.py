@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Task, Tag
+from .models import *
 
 
 class TagSerializer(serializers.ModelSerializer):
@@ -24,4 +24,21 @@ class TaskSerializer(serializers.ModelSerializer):
         """
         if data['end_time'] <= data['start_time']:
             raise serializers.ValidationError("Время окончания должно быть больше времени начала")
+        return data
+    
+
+class DocumentSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Document
+        fields = '__all__'
+
+class ProjectsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Project
+        fields = '__all__'
+    
+    def validate(self, data):
+
+        if data['name'] in Project.objects.all().values_list('name', flat=True):
+            raise serializers.ValidationError("Проект с таким названием уже существует")
         return data

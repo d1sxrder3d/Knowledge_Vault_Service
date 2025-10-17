@@ -1,0 +1,221 @@
+/* Стили для страниц авторизации (вход и регистрация) */
+
+.auth-container {
+    max-width: 480px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.auth-card {
+    background: #2a2a2a;
+    border: 1px solid #3a3a3a;
+    border-radius: 16px;
+    padding: 48px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+.auth-card h2 {
+    text-align: center;
+    margin-bottom: 40px;
+    color: #e5e5e5;
+    font-size: 2.2em;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+}
+
+/* Группы полей формы */
+.form-group {
+    margin-bottom: 24px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 10px;
+    color: #e5e5e5;
+    font-weight: 600;
+    font-size: 0.95em;
+    letter-spacing: 0.3px;
+}
+
+/* Стилизация полей ввода */
+.form-group input,
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="password"] {
+    width: 100%;
+    padding: 14px 16px;
+    border: 2px solid #3a3a3a;
+    background: #1f1f1f;
+    color: #e5e5e5;
+    border-radius: 10px;
+    font-size: 1em;
+    font-family: inherit;
+    transition: all 0.3s ease;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: #6b9eff;
+    background: #242424;
+    box-shadow: 0 0 0 4px rgba(107, 158, 255, 0.1),
+                inset 0 2px 4px rgba(0, 0, 0, 0.2);
+    transform: translateY(-1px);
+}
+
+.form-group input::placeholder {
+    color: #6a6a6a;
+}
+
+/* Автозаполнение браузера */
+.form-group input:-webkit-autofill,
+.form-group input:-webkit-autofill:hover,
+.form-group input:-webkit-autofill:focus {
+    -webkit-text-fill-color: #e5e5e5;
+    -webkit-box-shadow: 0 0 0 1000px #1f1f1f inset;
+    transition: background-color 5000s ease-in-out 0s;
+    border: 2px solid #3a3a3a;
+}
+
+/* Подсказки к полям */
+.form-group .helptext {
+    display: block;
+    margin-top: 8px;
+    font-size: 0.85em;
+    color: #a0a0a0;
+    line-height: 1.5;
+    padding-left: 4px;
+}
+
+/* Кнопка отправки формы */
+.submit-btn {
+    width: 100%;
+    background: linear-gradient(135deg, #6b9eff 0%, #5a8eef 100%);
+    color: white;
+    border: none;
+    padding: 16px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 1.05em;
+    font-weight: 600;
+    margin-top: 12px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(107, 158, 255, 0.3);
+    letter-spacing: 0.3px;
+}
+
+.submit-btn:hover {
+    background: linear-gradient(135deg, #5a8eef 0%, #4a7edf 100%);
+    box-shadow: 0 6px 20px rgba(107, 158, 255, 0.4);
+    transform: translateY(-2px);
+}
+
+.submit-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 8px rgba(107, 158, 255, 0.3);
+}
+
+/* Сообщения об ошибках */
+.error-message {
+    background: #3a1f1f;
+    border: 1px solid #ef4444;
+    border-left: 4px solid #ef4444;
+    color: #fca5a5;
+    padding: 14px 18px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    font-size: 0.9em;
+    line-height: 1.5;
+    box-shadow: 0 2px 8px rgba(239, 68, 68, 0.1);
+}
+
+.error-message ul {
+    margin: 0;
+    padding-left: 20px;
+}
+
+.error-message li {
+    margin: 6px 0;
+}
+
+/* Стили для отдельных ошибок полей */
+.form-group .error-message {
+    margin-top: 10px;
+    margin-bottom: 0;
+}
+
+/* Футер формы авторизации */
+.auth-footer {
+    text-align: center;
+    margin-top: 32px;
+    padding-top: 28px;
+    border-top: 1px solid #3a3a3a;
+}
+
+.auth-footer p {
+    color: #a0a0a0;
+    margin-bottom: 0;
+    font-size: 0.95em;
+}
+
+.auth-footer a {
+    color: #6b9eff;
+    font-weight: 600;
+    transition: color 0.2s ease;
+}
+
+.auth-footer a:hover {
+    color: #5a8eef;
+    text-decoration: none;
+}
+
+/* Стилизация для форм Django */
+.form-group p {
+    margin: 0;
+}
+
+/* Убираем стандартные ul маркеры Django */
+.form-group ul.errorlist {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* Дополнительная информация под формой */
+.auth-info {
+    text-align: center;
+    margin-top: 20px;
+    padding: 16px;
+    background: #1f1f1f;
+    border-radius: 10px;
+    border: 1px solid #3a3a3a;
+}
+
+.auth-info p {
+    color: #a0a0a0;
+    font-size: 0.9em;
+    margin: 0;
+}
+
+/* Анимация загрузки для кнопки */
+.submit-btn:disabled {
+    background: #4a4a4a;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+/* Адаптивность для мобильных */
+@media (max-width: 600px) {
+    .auth-card {
+        padding: 32px 24px;
+    }
+    
+    .auth-card h2 {
+        font-size: 1.8em;
+        margin-bottom: 32px;
+    }
+    
+    .form-group input {
+        font-size: 16px; /* Предотвращает зум на iOS */
+    }
+}

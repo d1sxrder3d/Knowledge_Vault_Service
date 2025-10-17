@@ -1,45 +1,92 @@
 {% extends "base.html" %}
 
-{% block title %}Главная{% endblock %}
+{% load static %}
+
+{% block title %}Главная — Knowledge Vault{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/index.css' %}">
+{% endblock %}
+
 {% block content %}
+<div class="welcome-header">
     <h1>Добро пожаловать в Knowledge Vault!</h1>
+</div>
 
-    {% if user.is_authenticated %}
-        {% if just_logged_in %}
-            <p class="welcome-message">🎉 Вы успешно вошли в систему! Добро пожаловать обратно, {{ user.username }}.</p>
-        {% endif %}
+{% if user.is_authenticated %}
+    {% if just_logged_in %}
+        <p class="welcome-message">🎉 Вы успешно вошли в систему! Добро пожаловать обратно, {{ user.username }}.</p>
+    {% endif %}
 
-        <div class="dashboard">
-            <div class="dashboard-block">
-                <h2>Мои задачи (TODO)</h2>
-                <ul class="item-list">
-                    {% for task in tasks %}
-                        <li>
-                            <span class="item-name">{{ task.name }}</span>
-                            <span class="item-meta">до {{ task.end_time|date:"d.m.Y H:i" }}</span>
-                        </li>
-                    {% empty %}
-                        <li>У вас пока нет задач.</li>
-                    {% endfor %}
-                </ul>
+    <div class="grid">
+        <!-- TODO Block -->
+        <div class="card">
+            <div class="card-header">
+                <h2>📋 TODO</h2>
+                <!-- <a class="btn primary" href=" url 'tasks' ">+ Добавить задачу</a> -->
+                <a class="btn primary" href="#">+ Добавить задачу</a>
+                <a class="btn primary" href="{% url 'add_task' %}">+ Добавить задачу</a>
             </div>
-
-            <div class="dashboard-block">
-                <h2>Мои документы</h2>
-                <ul class="item-list">
-                    {% for doc in documents %}
-                         <li>
-                            <span class="item-name">{{ doc.name }}</span>
-                            <span class="item-meta">.{{ doc.extension }}</span>
-                        </li>
-                    {% empty %}
-                        <li>У вас пока нет документов.</li>
-                    {% endfor %}
-                </ul>
-            </div>
+            <ul class="task-list">
+                {% for task in tasks %}
+                    <li class="task-item">
+                        <div class="task-info">
+                            <div class="task-name">{{ task.name }}</div>
+                            <div class="task-meta">
+                                {% if task.end_time %}
+                                    ⏰ до {{ task.end_time|date:"d.m.Y H:i" }}
+                                {% endif %}
+                            </div>
+                            {% if task.tags.all %}
+                                <div class="task-tags">
+                                    {% for tag in task.tags.all %}
+                                        <span class="tag">{{ tag.name }}</span>
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                        </div>
+                    </li>
+                {% empty %}
+                    <div class="empty-state">
+                        <p>Нет задач. Добавьте первую!</p>
+                    </div>
+                {% endfor %}
+            </ul>
         </div>
 
-    {% else %}
-        <p>Пожалуйста, <a href="{% url 'login' %}">войдите</a> или <a href="{% url 'register' %}">зарегистрируйтесь</a>, чтобы начать.</p>
-    {% endif %}
+        <!-- Documents Block -->
+        <div class="card">
+            <div class="card-header">
+                <h2>📁 Документы</h2>
+                <!-- <a class="btn primary" href=" url 'upload_document' ">+ Загрузить файл</a> -->
+                <a class="btn primary" href="#">+ Загрузить файл</a>
+                <a class="btn primary" href="{% url 'upload_document' %}">+ Загрузить файл</a>
+            </div>
+            <ul class="doc-list">
+                {% for doc in documents %}
+                    <li class="doc-item">
+                        <div class="doc-info">
+                            <div class="doc-name">📄 {{ doc.name }}</div>
+                            <div class="doc-meta">
+                                .{{ doc.extension }} • {{ doc.uploaded_at|date:"d.m.Y" }}
+                            </div>
+                        </div>
+                    </li>
+                {% empty %}
+                    <div class="empty-state">
+                        <p>Нет документов. Загрузите первый!</p>
+                    </div>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+{% else %}
+    <div class="guest-message">
+        <p>Пожалуйста, войдите в систему или зарегистрируйтесь, чтобы начать использовать Knowledge Vault и управлять своими задачами и документами.</p>
+        <div class="guest-actions">
+            <a class="btn" href="{% url 'login' %}">Войти</a>
+            <a class="btn primary" href="{% url 'register' %}">Регистрация</a>
+        </div>
+    </div>
+{% endif %}
 {% endblock %}

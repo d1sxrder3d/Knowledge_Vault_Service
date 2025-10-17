@@ -5,7 +5,9 @@
 <head>
     <meta charset="UTF-8">
     <title>{% block title %}Knowledge Vault{% endblock %}</title>
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    {% block extra_css %}{% endblock %}
 </head>
 <body>
     <nav>
@@ -14,7 +16,7 @@
         </div>
         <div class="nav-right">
             {% if user.is_authenticated %}
-                <span class="username">👋 {{ user.username }}</span>
+                <span class="username">👤 {{ user.username }}</span>
                 <a class="btn logout" href="{% url 'logout' %}">Выйти</a>
             {% else %}
                 <a class="btn" href="{% url 'login' %}">Войти</a>
@@ -22,13 +24,15 @@
             {% endif %}
         </div>
     </nav>
-
+    
     <main>
         {% block content %}{% endblock %}
     </main>
-
+    
     <footer>
-        <p>© {{ now|date:"Y" }} Knowledge Vault — Ваш проводник в мире знаний. </p>
+        <p>© {% now "Y" %} Knowledge Vault — Ваш проводник в мире знаний</p>
     </footer>
+
+    {% block extra_js %}{% endblock %}
 </body>
 </html>
