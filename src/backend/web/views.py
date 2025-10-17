@@ -1,8 +1,11 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, logout, get_user_model
 from django.contrib.auth.decorators import login_required
+from django.http import JsonResponse
 from django import forms
 from django.contrib import messages
+from django.forms.models import model_to_dict
+from .forms import TaskForm, DocumentUploadForm
 
 User = get_user_model()
 
@@ -112,3 +115,69 @@ def logout_view(request):
     logout(request)
     return redirect("index")
 
+
+@login_required
+def add_task_view(request):
+    if request.method == 'POST' and request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+        form = TaskForm(request.POST, user=request.user)
+        if form.is_valid():
+            task = form.save()
+            request.user.tasks.add(task)
+            
+            # Подготавливаем данные для ответа
+            task_data = model_to_dict(task, fields=['id', 'name', 'description', 'end_time'])
+            task_data['tags'] = [{'name': tag.name} for tag in task.tags.all()]
+            
+            return JsonResponse({'success': True, 'task': task_data})
+        else:
+            return JsonResponse({'success': False, 'errors': form.errors})
+    
+    # Если это не AJAX POST, перенаправляем на главную
+    return redirect('index')
+
+
+@login_required
+def upload_document_view(request):
+    if request.method == 'POST' and request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+        uploaded_files = request.FILES.getlist('files')
+        if not uploaded_files:
+            return JsonResponse({'success': False, 'error': 'Файлы не найдены.'})
+
+        created_documents = []
+        for uploaded_file in uploaded_files:
+            # Упрощенная логика: имя документа = имя файла
+            doc_split = uploaded_file.name.rsplit('.', 1)
+            
+            doc_name = doc_split[0]
+            doc_ext = doc_split[1]
+            
+            form_data = {'name': doc_name, 'description': '', 'extension': doc_ext, 'project_id': ''}
+            file_data = {'file': uploaded_file}
+            
+            form = DocumentUploadForm(form_data, file_data)
+
+            if form.is_valid():
+                document = form.save(commit=False)
+                
+                # Здесь должна быть логика сохранения файла (например, в S3 или локально)
+                # Для примера, просто заполним поля метаданными
+                document.file_name = uploaded_file.name
+                document.file_weight = uploaded_file.size
+                document.s3_path = f"user_{request.user.id}/{uploaded_file.name}" # Пример пути
+                document.save()
+                request.user.documents.add(document)
+
+                doc_data = model_to_dict(document, fields=['id', 'name'])
+                doc_data['extension'] = document.extension
+                doc_data['uploaded_at_formatted'] = document.uploaded_at.strftime('%d.%m.%Y')
+                created_documents.append(doc_data)
+            else:
+                # Можно добавить более детальную обработку ошибок
+                print(f"Ошибка валидации для файла {uploaded_file.name}: {form.errors.as_json()}")
+
+        if created_documents:
+            return JsonResponse({'success': True, 'documents': created_documents})
+        else:
+            return JsonResponse({'success': False, 'error': 'Не удалось сохранить ни один из файлов.'})
+
+    return redirect('index')

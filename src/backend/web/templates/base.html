@@ -33,6 +33,9 @@
         <p>© {% now "Y" %} Knowledge Vault — Ваш проводник в мире знаний</p>
     </footer>
 
+    {% if user.is_authenticated %}
+        <script src="{% static 'js/main.js' %}"></script>
+    {% endif %}
     {% block extra_js %}{% endblock %}
 </body>
 </html>

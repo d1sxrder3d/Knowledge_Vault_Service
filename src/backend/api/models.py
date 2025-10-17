@@ -26,6 +26,9 @@ class Document(models.Model):
 
     file_name = models.CharField(max_length=255)
 
+    extension = models.CharField(max_length=255, blank=True, null=True)
+
+
     s3_path = models.CharField(max_length=255)
     
     file_weight = models.IntegerField()
@@ -33,6 +36,8 @@ class Document(models.Model):
     project = models.ForeignKey("Project", on_delete=models.CASCADE, blank=True, null=True)
 
     tags = models.ManyToManyField("Tag") # документу присваеваетя тэг
+    
+    uploaded_at = models.DateTimeField(auto_now_add=True)
 
 
 class Task(models.Model):
