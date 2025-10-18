@@ -7,12 +7,6 @@ class User(AbstractUser):
     class Meta:
         swappable = "AUTH_USER_MODEL"
 
-    tags = models.ManyToManyField("Tag") # у юзера есть свой набор тэгов
-
-    tasks = models.ManyToManyField("Task")
-    
-    documents = models.ManyToManyField("Document")
-
     projects = models.ManyToManyField("Project")
 
 
@@ -36,6 +30,8 @@ class Document(models.Model):
     project = models.ForeignKey("Project", on_delete=models.CASCADE, blank=True, null=True)
 
     tags = models.ManyToManyField("Tag") # документу присваеваетя тэг
+
+    user_id = models.ForeignKey("User", on_delete=models.CASCADE, related_name="user_documents")
     
     uploaded_at = models.DateTimeField(auto_now_add=True)
 
@@ -47,6 +43,8 @@ class Task(models.Model):
     name = models.CharField(max_length=255)
 
     description = models.TextField()
+
+    user = models.ForeignKey("User", on_delete=models.CASCADE, related_name="tasks")
 
     status = models.CharField(max_length=255)
 
@@ -71,10 +69,14 @@ class Task(models.Model):
 class Tag(models.Model):
     class Meta:
         db_table = "tags"
+        # Имя тега должно быть уникальным для каждого пользователя
+        unique_together = ('name', 'user')
 
-    name = models.CharField(max_length=50, unique=True)
+    name = models.CharField(max_length=50)
     
     description = models.TextField(blank=True, null=True)
+
+    user = models.ForeignKey("User", on_delete=models.CASCADE, related_name="user_tags")
 
     color = models.CharField(max_length=40)
 

@@ -1,0 +1,311 @@
+/* Responsive Design - Адаптивность для мобильных устройств */
+
+/* Tablet - до 992px */
+@media (max-width: 992px) {
+    .main-container {
+        padding: 0 1.5rem;
+    }
+    
+    .section-title {
+        font-size: 1.5rem;
+    }
+    
+    .task-filters {
+        gap: 0.5rem;
+    }
+    
+    .filter-btn {
+        padding: 0.4rem 0.75rem;
+        font-size: 0.85rem;
+    }
+    
+    .documents-grid {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 1rem;
+    }
+}
+
+/* Mobile - до 768px */
+@media (max-width: 768px) {
+    .main-container {
+        margin: 1rem auto;
+        padding: 0 1rem;
+    }
+    
+    /* Navbar */
+    .navbar-custom {
+        padding: 0.75rem 0;
+    }
+    
+    .navbar-brand {
+        font-size: 1.25rem;
+    }
+    
+    /* Section Headers */
+    .section-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+    
+    .section-header button {
+        width: 100%;
+    }
+    
+    .section-title {
+        font-size: 1.35rem;
+    }
+    
+    /* Task Filters */
+    .task-filters {
+        overflow-x: auto;
+        flex-wrap: nowrap;
+        padding-bottom: 0.5rem;
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    .filter-btn {
+        flex-shrink: 0;
+        white-space: nowrap;
+    }
+    
+    /* Task Items */
+    .task-item {
+        padding: 1rem;
+    }
+    
+    .task-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.75rem;
+    }
+    
+    .task-header > div:first-child {
+        display: flex;
+        align-items: flex-start;
+        gap: 0.75rem;
+        width: 100%;
+    }
+    
+    .task-actions {
+        width: 100%;
+        justify-content: flex-end;
+        margin-top: 0.5rem;
+    }
+    
+    .task-meta {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+    
+    /* Subtasks */
+    .subtasks-container {
+        padding-left: 1rem;
+    }
+    
+    .subtask-item {
+        padding: 0.75rem;
+    }
+    
+    /* Documents Grid */
+    .documents-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .document-card {
+        padding: 1.25rem;
+    }
+    
+    /* Modal */
+    .modal-dialog {
+        margin: 0.5rem;
+    }
+    
+    .modal-body {
+        padding: 1rem;
+    }
+    
+    .datetime-inputs {
+        grid-template-columns: 1fr;
+    }
+    
+    .quick-date-btns,
+    .quick-time-btns {
+        flex-direction: column;
+    }
+    
+    .quick-date-btn,
+    .quick-time-btn {
+        width: 100%;
+    }
+    
+    /* Tag Filters */
+    .tag-filters {
+        overflow-x: auto;
+        flex-wrap: nowrap;
+        padding-bottom: 0.5rem;
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    .tag-filter {
+        flex-shrink: 0;
+        white-space: nowrap;
+    }
+    
+    /* Inline Add Task */
+    .inline-add-task {
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+    
+    .inline-actions {
+        width: 100%;
+    }
+    
+    .inline-btn {
+        flex: 1;
+    }
+}
+
+/* Small Mobile - до 480px */
+@media (max-width: 480px) {
+    .main-container {
+        padding: 0 0.75rem;
+    }
+    
+    .section-title {
+        font-size: 1.2rem;
+    }
+    
+    .task-name {
+        font-size: 1rem;
+    }
+    
+    .task-description {
+        font-size: 0.85rem;
+    }
+    
+    .task-action-btn,
+    .doc-action-btn {
+        padding: 0.4rem 0.6rem;
+        font-size: 0.85rem;
+    }
+    
+    .document-icon {
+        width: 50px;
+        height: 50px;
+        font-size: 1.25rem;
+    }
+    
+    .modal-content {
+        border-radius: 0;
+    }
+    
+    .modal-dialog {
+        margin: 0;
+        max-width: 100%;
+        height: 100%;
+    }
+    
+    .modal-content {
+        height: 100%;
+        border: none;
+    }
+    
+    /* Auth Pages */
+    .auth-card {
+        padding: 2rem 1rem;
+    }
+    
+    .auth-title {
+        font-size: 1.5rem;
+    }
+    
+    .auth-logo {
+        font-size: 2.5rem;
+    }
+}
+
+/* Landscape Mobile */
+@media (max-width: 768px) and (orientation: landscape) {
+    .modal-dialog {
+        max-height: 100vh;
+        overflow-y: auto;
+    }
+    
+    .auth-container {
+        padding: 1rem;
+    }
+    
+    .auth-card {
+        margin: 1rem 0;
+    }
+}
+
+/* Touch Device Improvements */
+@media (hover: none) and (pointer: coarse) {
+    /* Увеличиваем области касания */
+    .task-checkbox {
+        width: 28px;
+        height: 28px;
+    }
+    
+    .task-action-btn,
+    .doc-action-btn,
+    .filter-btn {
+        min-height: 44px;
+        min-width: 44px;
+    }
+    
+    .btn-primary-custom,
+    .btn-secondary-custom {
+        min-height: 48px;
+    }
+    
+    /* Убираем hover эффекты */
+    .card-custom:hover,
+    .task-item:hover,
+    .document-card:hover {
+        transform: none;
+    }
+    
+    /* Улучшаем feedback при касании */
+    .task-checkbox:active,
+    .task-action-btn:active,
+    .filter-btn:active {
+        transform: scale(0.95);
+    }
+}
+
+/* High DPI Displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .document-icon,
+    .auth-logo {
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+}
+
+/* Print Styles */
+@media print {
+    .navbar-custom,
+    .task-actions,
+    .document-actions,
+    .filter-btn,
+    .btn-primary-custom,
+    .task-checkbox {
+        display: none !important;
+    }
+    
+    .task-item,
+    .document-card {
+        break-inside: avoid;
+        border: 1px solid #000;
+    }
+    
+    body {
+        background: white;
+        color: black;
+    }
+}

@@ -1,54 +1,113 @@
-{% extends "base.html" %}
-
-{% block title %}Вход{% endblock %}
-
 {% load static %}
-{% block extra_css %}
-<link rel="stylesheet" href="{% static 'css/auth.css' %}">
-{% endblock %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Вход - TaskManager</title>
+    
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <link rel="stylesheet" href="{% static 'css/auth.css' %}">
+</head>
+<body>
+    <div class="auth-container">
+        <div class="auth-card">
+            <div class="auth-header">
+                <div class="auth-logo">
+                    <i class="bi bi-list-check"></i>
+                </div>
+                <h1 class="auth-title">Добро пожаловать</h1>
+                <p class="auth-subtitle">Войдите в свой аккаунт</p>
+            </div>
 
-{% block content %}
-<div class="auth-container">
-    <div class="auth-card">
-        <h2>Вход</h2>
-       
-        {% if form.non_field_errors %}
-            <div class="error-message">
-                {% for error in form.non_field_errors %}
-                    {{ error }}
+            {% if messages %}
+            <div class="auth-messages">
+                {% for message in messages %}
+                <div class="auth-alert {{ message.tags }}">
+                    {{ message }}
+                </div>
                 {% endfor %}
             </div>
-        {% endif %}
-        <form method="post">
-            {% csrf_token %}
-           
-            <div class="form-group">
-                <label for="id_login">Имя пользователя или email</label>
-                {{ form.login }}
-                {% if form.login.errors %}
-                    <div class="error-message">
+            {% endif %}
+
+            {% if form.non_field_errors %}
+            <div class="form-errors">
+                <ul>
+                    {% for error in form.non_field_errors %}
+                    <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endif %}
+
+            <form method="post" class="auth-form" id="loginForm">
+                {% csrf_token %}
+                
+                <div class="form-group-auth">
+                    <label for="id_login">Имя пользователя или email</label>
+                    <input 
+                        type="text" 
+                        name="login" 
+                        id="id_login" 
+                        placeholder="Введите логин или email"
+                        required
+                        autofocus
+                        {% if form.login.value %}value="{{ form.login.value }}"{% endif %}
+                    >
+                    {% if form.login.errors %}
+                    <ul class="errorlist">
                         {% for error in form.login.errors %}
-                            {{ error }}
+                        <li>{{ error }}</li>
                         {% endfor %}
-                    </div>
-                {% endif %}
-            </div>
-            <div class="form-group">
-                <label for="id_password">Пароль</label>
-                {{ form.password }}
-                {% if form.password.errors %}
-                    <div class="error-message">
+                    </ul>
+                    {% endif %}
+                </div>
+
+                <div class="form-group-auth">
+                    <label for="id_password">Пароль</label>
+                    <input 
+                        type="password" 
+                        name="password" 
+                        id="id_password" 
+                        placeholder="Введите пароль"
+                        required
+                    >
+                    {% if form.password.errors %}
+                    <ul class="errorlist">
                         {% for error in form.password.errors %}
-                            {{ error }}
+                        <li>{{ error }}</li>
                         {% endfor %}
-                    </div>
-                {% endif %}
+                    </ul>
+                    {% endif %}
+                </div>
+
+                <button type="submit" class="btn-auth">
+                    Войти
+                </button>
+            </form>
+
+            <div class="auth-divider">
+                <span>или</span>
             </div>
-            <button type="submit" class="submit-btn">Войти</button>
-        </form>
-        <div class="auth-footer">
-            <p>Нет аккаунта? <a href="{% url 'register' %}">Зарегистрируйтесь</a></p>
+
+            <div class="auth-link">
+                Нет аккаунта? <a href="{% url 'register' %}">Зарегистрироваться</a>
+            </div>
         </div>
     </div>
-</div>
-{% endblock %}
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#loginForm').submit(function() {
+                const btn = $('.btn-auth');
+                btn.prop('disabled', true).addClass('loading');
+            });
+        });
+    </script>
+</body>
+</html>

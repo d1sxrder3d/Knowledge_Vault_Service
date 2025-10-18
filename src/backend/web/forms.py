@@ -32,7 +32,7 @@ class TaskForm(forms.ModelForm):
         user = kwargs.pop('user', None)
         super().__init__(*args, **kwargs)
         if user:
-            self.fields['tags'].queryset = user.tags.all()
+            self.fields['tags'].queryset = user.user_tags.all()
 
 
 class DocumentUploadForm(forms.ModelForm):

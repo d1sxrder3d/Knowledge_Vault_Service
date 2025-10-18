@@ -1,266 +1,237 @@
-/* Стили для страниц авторизации (вход и регистрация) */
-
+/* Auth Pages Styling */
 .auth-container {
-    max-width: 480px;
-    margin: 40px auto;
-    padding: 0 20px;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
 }
 
 .auth-card {
-    background: #2a2a2a;
-    border: 1px solid #3a3a3a;
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
     border-radius: 16px;
-    padding: 48px;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    padding: 3rem;
+    max-width: 450px;
+    width: 100%;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
 }
 
-.auth-card h2 {
+.auth-header {
     text-align: center;
-    margin-bottom: 40px;
-    color: #e5e5e5;
-    font-size: 2.2em;
-    font-weight: 700;
-    letter-spacing: -0.5px;
+    margin-bottom: 2rem;
 }
 
-/* Группы полей формы */
-.form-group {
-    margin-bottom: 24px;
+.auth-logo {
+    font-size: 3rem;
+    color: var(--accent-primary);
+    margin-bottom: 1rem;
 }
 
-.form-group label {
-    display: block;
-    margin-bottom: 10px;
-    color: #e5e5e5;
+.auth-title {
+    font-size: 1.75rem;
     font-weight: 600;
-    font-size: 0.95em;
-    letter-spacing: 0.3px;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
 }
 
-/* Стилизация полей ввода */
-.form-group input,
-.form-group input[type="text"],
-.form-group input[type="email"],
-.form-group input[type="password"],
-.form-group textarea {
-    width: 100%;
-    padding: 14px 16px;
-    border: 2px solid #3a3a3a;
-    background: #1f1f1f;
-    color: #e5e5e5;
-    border-radius: 10px;
-    font-size: 1em;
-    font-family: inherit;
-    transition: all 0.3s ease;
-    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
+.auth-subtitle {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
 }
 
-.form-group input:focus,
-.form-group textarea:focus {
-    outline: none;
-    border-color: #6b9eff;
-    background: #242424;
-    box-shadow: 0 0 0 3px rgba(107, 158, 255, 0.1),
-                inset 0 2px 4px rgba(0, 0, 0, 0.2);
-    transform: translateY(-1px);
+.auth-form {
+    margin-bottom: 1.5rem;
 }
 
-.form-group input::placeholder {
-    color: #6a6a6a;
+.form-group-auth {
+    margin-bottom: 1.5rem;
 }
 
-/* Стилизация для <select> и <textarea> */
-.form-group textarea {
-    resize: vertical;
-    min-height: 80px;
-    font-family: inherit;
-    font-size: 1em;
-}
-
-.form-group select[multiple] {
-    width: 100%;
-    padding: 10px;
-    border: 2px solid #3a3a3a;
-    background: #1f1f1f;
-    color: #e5e5e5;
-    border-radius: 10px;
-    min-height: 120px;
-    transition: all 0.3s ease;
-}
-
-.form-group select[multiple]:focus {
-    outline: none;
-    border-color: #6b9eff;
-    background: #242424;
-    box-shadow: 0 0 0 3px rgba(107, 158, 255, 0.1);
-}
-.form-group select[multiple] option {
-    padding: 8px 12px;
-}
-
-/* Автозаполнение браузера */
-.form-group input:-webkit-autofill,
-.form-group input:-webkit-autofill:hover,
-.form-group input:-webkit-autofill:focus {
-    -webkit-text-fill-color: #e5e5e5;
-    -webkit-box-shadow: 0 0 0 1000px #1f1f1f inset;
-    transition: background-color 5000s ease-in-out 0s;
-    border: 2px solid #3a3a3a;
-}
-
-/* Подсказки к полям */
-.form-group .helptext {
+.form-group-auth label {
     display: block;
-    margin-top: 8px;
-    font-size: 0.85em;
-    color: #a0a0a0;
-    line-height: 1.5;
-    padding-left: 4px;
+    color: var(--text-secondary);
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
 }
 
-/* Кнопка отправки формы */
-.submit-btn {
+.form-group-auth input {
     width: 100%;
-    background: linear-gradient(135deg, #6b9eff 0%, #5a8eef 100%);
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    color: var(--text-primary);
+    padding: 0.875rem 1rem;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: all 0.2s;
+}
+
+.form-group-auth input:focus {
+    outline: none;
+    border-color: var(--accent-primary);
+    background: var(--bg-tertiary);
+    box-shadow: 0 0 0 3px rgba(88, 101, 242, 0.1);
+}
+
+.form-group-auth input::placeholder {
+    color: var(--text-muted);
+}
+
+.form-group-auth .errorlist {
+    list-style: none;
+    padding: 0;
+    margin: 0.5rem 0 0 0;
+}
+
+.form-group-auth .errorlist li {
+    color: var(--danger);
+    font-size: 0.85rem;
+}
+
+.btn-auth {
+    width: 100%;
+    background: var(--accent-primary);
     color: white;
     border: none;
-    padding: 16px;
-    border-radius: 10px;
+    padding: 1rem;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
     cursor: pointer;
-    font-size: 1.05em;
-    font-weight: 600;
-    margin-top: 12px;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 12px rgba(107, 158, 255, 0.3);
-    letter-spacing: 0.3px;
+    transition: all 0.2s;
 }
 
-.submit-btn:hover {
-    background: linear-gradient(135deg, #5a8eef 0%, #4a7edf 100%);
-    box-shadow: 0 6px 20px rgba(107, 158, 255, 0.4);
+.btn-auth:hover {
+    background: var(--accent-hover);
     transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(88, 101, 242, 0.4);
 }
 
-.submit-btn:active {
+.btn-auth:active {
     transform: translateY(0);
-    box-shadow: 0 2px 8px rgba(107, 158, 255, 0.3);
 }
 
-.submit-btn:disabled {
-    background: linear-gradient(135deg, #555, #444);
-    cursor: not-allowed;
-    box-shadow: none;
-    transform: none;
-    opacity: 0.7;
-}
-
-
-/* Сообщения об ошибках */
-.error-message {
-    background: #3a1f1f;
-    border: 1px solid #ef4444;
-    border-left: 4px solid #ef4444;
-    color: #fca5a5;
-    padding: 14px 18px;
-    border-radius: 10px;
-    margin-bottom: 20px;
-    font-size: 0.9em;
-    line-height: 1.5;
-    box-shadow: 0 2px 8px rgba(239, 68, 68, 0.1);
-}
-
-.error-message ul {
-    margin: 0;
-    padding-left: 20px;
-}
-
-.error-message li {
-    margin: 6px 0;
-}
-
-/* Стили для отдельных ошибок полей */
-.field-error {
-    color: #fca5a5;
-    font-size: 0.85em;
-    font-weight: 500;
-    margin-top: 10px;
-    min-height: 1em; /* Резервируем место, чтобы форма не "прыгала" */
-    padding-left: 4px;
-    margin-bottom: 0;
-}
-
-/* Футер формы авторизации */
-.auth-footer {
+.auth-divider {
     text-align: center;
-    margin-top: 32px;
-    padding-top: 28px;
-    border-top: 1px solid #3a3a3a;
+    margin: 1.5rem 0;
+    position: relative;
 }
 
-.auth-footer p {
-    color: #a0a0a0;
-    margin-bottom: 0;
-    font-size: 0.95em;
+.auth-divider::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 100%;
+    height: 1px;
+    background: var(--border-color);
 }
 
-.auth-footer a {
-    color: #6b9eff;
-    font-weight: 600;
-    transition: color 0.2s ease;
+.auth-divider span {
+    background: var(--bg-card);
+    padding: 0 1rem;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    position: relative;
+    z-index: 1;
 }
 
-.auth-footer a:hover {
-    color: #5a8eef;
+.auth-link {
+    text-align: center;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+.auth-link a {
+    color: var(--accent-primary);
     text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s;
 }
 
-/* Стилизация для форм Django */
-.form-group p {
-    margin: 0;
+.auth-link a:hover {
+    color: var(--accent-hover);
+    text-decoration: underline;
 }
 
-/* Убираем стандартные ul маркеры Django */
-.form-group ul.errorlist {
+.auth-messages {
+    margin-bottom: 1.5rem;
+}
+
+.auth-alert {
+    padding: 0.875rem 1rem;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+}
+
+.auth-alert.success {
+    background: rgba(59, 165, 93, 0.15);
+    color: var(--success);
+    border-left: 4px solid var(--success);
+}
+
+.auth-alert.error {
+    background: rgba(237, 66, 69, 0.15);
+    color: var(--danger);
+    border-left: 4px solid var(--danger);
+}
+
+/* Non-field errors */
+.form-errors {
+    background: rgba(237, 66, 69, 0.15);
+    color: var(--danger);
+    border-left: 4px solid var(--danger);
+    padding: 0.875rem 1rem;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+    font-size: 0.9rem;
+}
+
+.form-errors ul {
     list-style: none;
     padding: 0;
     margin: 0;
 }
 
-/* Дополнительная информация под формой */
-.auth-info {
-    text-align: center;
-    margin-top: 20px;
-    padding: 16px;
-    background: #1f1f1f;
-    border-radius: 10px;
-    border: 1px solid #3a3a3a;
-}
-
-.auth-info p {
-    color: #a0a0a0;
-    font-size: 0.9em;
-    margin: 0;
-}
-
-/* Анимация загрузки для кнопки */
-.submit-btn:disabled {
-    background: #4a4a4a;
+/* Loading state */
+.btn-auth:disabled {
+    opacity: 0.6;
     cursor: not-allowed;
-    box-shadow: none;
 }
 
-/* Адаптивность для мобильных */
-@media (max-width: 600px) {
+.btn-auth.loading {
+    position: relative;
+    color: transparent;
+}
+
+.btn-auth.loading::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    top: 50%;
+    left: 50%;
+    margin-left: -10px;
+    margin-top: -10px;
+    border: 2px solid white;
+    border-radius: 50%;
+    border-top-color: transparent;
+    animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* Responsive */
+@media (max-width: 576px) {
     .auth-card {
-        padding: 32px 24px;
+        padding: 2rem 1.5rem;
     }
     
-    .auth-card h2 {
-        font-size: 1.8em;
-        margin-bottom: 32px;
-    }
-    
-    .form-group input {
-        font-size: 16px; /* Предотвращает зум на iOS */
+    .auth-title {
+        font-size: 1.5rem;
     }
 }
