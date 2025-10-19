@@ -64,7 +64,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'config.urls'
+ROOT_URLCONF = 'backend.urls'
 
 TEMPLATES = [
     {
@@ -84,7 +84,7 @@ TEMPLATES = [
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [BASE_DIR / 'static']
 
-WSGI_APPLICATION = 'config.wsgi.application'
+WSGI_APPLICATION = 'backend.wsgi.application'
 
 AUTH_USER_MODEL = 'api.User'
 
@@ -156,6 +156,4 @@ STATIC_ROOT = '/static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-PASSWORD_HASHERS = ['django.contrib.auth.hashers.MD5PasswordHasher']
-EMAIL_BACKEND = 'django.core.mail.backends.locmem.EmailBackend'
 

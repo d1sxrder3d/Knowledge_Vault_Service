@@ -1,16 +1,21 @@
 from django.urls import path
-from web.views import index, auth, tasks, documents
+from . import views
 
 urlpatterns = [
-    path("", index.index_view, name="index"),
+    path("", views.index_view, name="index"),
     
-    path("register/", auth.register_view, name="register"),
-    path("login/", auth.login_view, name="login"),
-    path("logout/", auth.logout_view, name="logout"),
+    # Auth
+    path("register/", views.register_view, name="register"),
+    path("login/", views.login_view, name="login"),
+    path("logout/", views.logout_view, name="logout"),
     
-    path("tasks/add/", tasks.add_task_view, name="add_task"),
-    path("tasks/<int:task_id>/", tasks.task_detail_view, name="task_detail"),
+    # Tasks
+    path("tasks/add/", views.add_task_view, name="add_task"),
+    path("tasks/<int:task_id>/", views.task_detail_view, name="task_detail"),
+    path("tasks/<int:task_id>/get/", views.task_get_view, name="task_get"),
     
-    path("documents/upload/", documents.upload_document_view, name="upload_document"),
-    path("documents/<int:doc_id>/", documents.document_detail_view, name="document_detail"),
+    # Documents
+    path("documents/upload/", views.upload_document_view, name="upload_document"),
+    path("documents/<int:doc_id>/", views.document_detail_view, name="document_detail"),
+    path("documents/<int:doc_id>/get/", views.document_get_view, name="document_get"),
 ]
